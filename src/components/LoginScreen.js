@@ -47,6 +47,12 @@ function Login() {
             <button className={style.button}>Forgot Password?</button>
           </div>
         </div>
+        <div className={style.login_box}>
+          <button className={style.login_btn}>Login</button>
+        </div>
+        <p className={style.bottom_text}>
+          Dont have an account? <a href="/" className={style.link}>Register</a>
+        </p>
       </form>
     );
 }

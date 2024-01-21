@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 import image from "../images/main_page_img.png";
 import style from "../styles/Welcome.module.css";
+import Successful from "./SuccessfulScreen";
 import Login from "./LoginScreen";
 // import Register from "./RegisterPage";
 // import Login from "./LoginPage";
 // треба в css єкспортить шрифти
 
 function Welcome(props) {
-  const [veiewMode, setViewMode] = useState('welcome', 'login', 'register');// 'welcome | login | success | register | loading
+  const [veiewMode, setViewMode] = useState('welcome', 'login', 'register', 'success');// 'welcome | login | success | register | loading
 
-  function handleBtn() {
+  function handleRegisterBtn() {
     console.log(true);
-    setViewMode('login');
+    setViewMode('register');
+  }
+
+  function handleLoginBtn() {
+    console.log(true);
+    setViewMode("login");
   }
   // const myButton = document.getElementById("btn");
   // myButton.onclick = function() {
@@ -34,10 +40,10 @@ function Welcome(props) {
           </p>
         </div>
         <div className={style.buttons_wrapper}>
-          <button onClick={handleBtn} className={style.button_create}>
+          <button onClick={handleRegisterBtn} className={style.button_create}>
             Create Account
           </button>
-          <button onClick={handleBtn} className={style.button_log}>
+          <button onClick={handleLoginBtn} className={style.button_log}>
             Login
           </button>
         </div>
@@ -57,6 +63,10 @@ function Welcome(props) {
       return <h1>DICK</h1>
     }
 
+    if (veiewMode === 'success') {
+      return <Successful />
+    }
+ 
     return <WelcomeScreenContent />;
   };
 

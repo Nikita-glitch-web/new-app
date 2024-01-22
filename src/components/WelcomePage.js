@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import image from "../images/main_page_img.png";
 import style from "../styles/Welcome.module.css";
 import Successful from "./SuccessfulScreen";
-import Login from "./LoginScreen";
+import LoginScreen from "./LoginScreen";
 // import Register from "./RegisterPage";
 // import Login from "./LoginPage";
 // треба в css єкспортить шрифти
@@ -18,7 +18,13 @@ function Welcome(props) {
   function handleLoginBtn() {
     console.log(true);
     setViewMode("login");
+    callback();
   }
+
+  const callback = () => {
+    console.log("Callback function called!");
+  };
+
   // const myButton = document.getElementById("btn");
   // myButton.onclick = function() {
 
@@ -56,7 +62,7 @@ function Welcome(props) {
 
   const Content = () => {
     if (veiewMode === 'login') {
-      return <Login />
+      return <LoginScreen />
     }
 
     if (veiewMode === 'register') {
@@ -80,4 +86,17 @@ function Welcome(props) {
   );
 }
 
+
+
 export default Welcome;
+
+
+// function MyComponent(props) {
+//   return (
+//     <div>
+//       <button onClick={props.callback}>Нажми меня</button>
+//     </div>
+//   );
+// }
+// Код, створений штучним інтелектом. Перевіряйте та використовуйте обережно. Додаткові відомості про запитання й відповіді.
+// В этом примере компонент MyComponent принимает пропс callback, который является функцией. Мы передаем эту функцию в качестве обработчика события onClick кнопки.

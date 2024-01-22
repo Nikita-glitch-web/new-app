@@ -1,11 +1,29 @@
 import React from "react";
 // import { useFormik } from "formik";
 import image from "../images/Close.png";
-import style from "../styles/Login.module.css"
+import style from "../styles/Login.module.css";
 
-function Login() {
+// function MyComponent(props) {
+//   return (
+//     <div>
+//       <button onClick={props.callback}>Нажми меня</button>
+//     </div>
+//   );
+// }
+
+// function LoginLogic(props) {
+//   const handleClick = () => {
+//     props.callback();
+//   };
+// }
+
+
+const LoginScreen = (props) => {
+  const handleSubmit = () => {
+    props.callback();
+  };
     return (
-      <form className={style.form}>
+      <form onSubmit={handleSubmit} className={style.form}>
         <div className={style.form_header}>
           <div className={style.form_title_box}>
             <p className={style.sub_title}>Welcome Back!!!</p>
@@ -57,4 +75,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default LoginScreen;

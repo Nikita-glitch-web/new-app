@@ -199,6 +199,9 @@ table {
     margin-left: 20px;
 }
 
+.fieldset:focus {
+    border: 2px solid #050522;
+}
 
 .fieldset {
     border: 2px solid black;
@@ -224,10 +227,14 @@ table {
         cursor: pointer;
 }
 
+.input_password:focus {
+    outline: none;
+    border: 2px solid #050522;
+}
+
 .input:focus {
     outline: none;
 }
-
 
 .checkbox {
     border-radius: 5px;

@@ -1,6 +1,6 @@
 import React from "react";
 // import { useFormik } from "formik";
-import image from "../images/Close.png";
+import image from "../images/Vector.svg";
 import style from "../styles/Login.module.css";
 
 // function MyComponent(props) {
@@ -19,8 +19,10 @@ import style from "../styles/Login.module.css";
 
 
 const LoginScreen = (props) => {
-  const handleSubmit = () => {
-    props.callback();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    props.requestForSubmit();
+    console.log('Iam gay');
   };
     return (
       <form onSubmit={handleSubmit} className={style.form}>
@@ -52,7 +54,21 @@ const LoginScreen = (props) => {
             <input
               type="text"
               className={style.input_password}
+              placeholder="course"
+            ></input>
+          </div>
+          <div className={style.inputs_wrapper}>
+            <input
+              type="number"
+              className={style.input_password}
               placeholder="password"
+            ></input>
+          </div>
+          <div className={style.inputs_wrapper}>
+            <input
+              type="number"
+              className={style.input_password}
+              placeholder="confirm password"
             ></input>
           </div>
         </div>
@@ -69,7 +85,10 @@ const LoginScreen = (props) => {
           <button className={style.login_btn}>Login</button>
         </div>
         <p className={style.bottom_text}>
-          Dont have an account? <a href="/" className={style.link}>Register</a>
+          Dont have an account?{" "}
+          <a href="/" className={style.link}>
+            Register
+          </a>
         </p>
       </form>
     );

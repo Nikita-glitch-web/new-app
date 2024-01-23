@@ -8,22 +8,22 @@ import LoginScreen from "./LoginScreen";
 // треба в css єкспортить шрифти
 
 function Welcome(props) {
-  const [veiewMode, setViewMode] = useState('welcome', 'login', 'register', 'success');// 'welcome | login | success | register | loading
+  const [veiewMode, setViewMode] = useState(
+    "welcome",
+    "login",
+    "register",
+    "success"
+  ); // 'welcome | login | success | register | loading
 
   function handleRegisterBtn() {
     console.log(true);
-    setViewMode('register');
+    setViewMode("register");
   }
 
   function handleLoginBtn() {
     console.log(true);
     setViewMode("login");
-    callback();
   }
-
-  const callback = () => {
-    console.log("Callback function called!");
-  };
 
   // const myButton = document.getElementById("btn");
   // myButton.onclick = function() {
@@ -58,21 +58,32 @@ function Welcome(props) {
     );
   };
 
-  
+  // SuccessfulSubmitRequest(event) {
+  //   event.preventDefault()
+  // }
+
+  const successfulSubmitRequest = (props) => {
+    const requestForSubmit = () => {  // це callback
+      console.log("Callback function called!");
+      setViewMode('success')
+    };
+    requestForSubmit(props);
+  };
+
 
   const Content = () => {
-    if (veiewMode === 'login') {
-      return <LoginScreen />
+    if (veiewMode === "login") {
+      return <LoginScreen requestForSubmit={successfulSubmitRequest}/>;
     }
 
-    if (veiewMode === 'register') {
-      return <h1>DICK</h1>
+    if (veiewMode === "register") {
+      return <h1>DICK</h1>;
     }
 
-    if (veiewMode === 'success') {
-      return <Successful />
+    if (veiewMode === "success") {
+      return <Successful />;
     }
- 
+
     return <WelcomeScreenContent />;
   };
 
@@ -86,10 +97,7 @@ function Welcome(props) {
   );
 }
 
-
-
 export default Welcome;
-
 
 // function MyComponent(props) {
 //   return (
@@ -100,3 +108,27 @@ export default Welcome;
 // }
 // Код, створений штучним інтелектом. Перевіряйте та використовуйте обережно. Додаткові відомості про запитання й відповіді.
 // В этом примере компонент MyComponent принимает пропс callback, который является функцией. Мы передаем эту функцию в качестве обработчика события onClick кнопки.
+
+
+// const ComponentB = (props) => {
+//   setTimeout(() => {
+//     props.doSomething();
+//   }, 3000);
+//   return <div className={props.additionalClassNames}>{props.title}</div>;
+// };
+
+// const ComponentA = () => {
+//   const test = () => {
+//     const callback = () => {
+//       console.log("asdfasdfasdfasdf");
+//     };
+//   };
+//   const text = "sadfasdfasdfasfd";
+//   return (
+//     <ComponentB
+//       doSomething={test}
+//       title={text}
+//       additionalClassNames="asdfasdf asdfasdf"
+//     />
+//   );
+// };

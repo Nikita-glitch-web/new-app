@@ -16,6 +16,27 @@ function Register() {
             </button>
           </div>
         </div>
+        <div className={style.inputs_box}>
+          <div className={style.inputs_wrapper}>
+            <fieldset className={style.fieldset}>
+              <legend className={style.legend}>username/email</legend>
+              <p>
+                <input
+                  type="text"
+                  className={style.input}
+                  placeholder="info@example.com"
+                ></input>
+              </p>
+            </fieldset>
+          </div>
+          <div className={style.inputs_wrapper}>
+            <input
+              type="text"
+              className={style.input_password}
+              placeholder="password"
+            ></input>
+          </div>
+        </div>
       </form>
     );
 }

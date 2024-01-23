@@ -144,23 +144,30 @@ table {
 
 .close_btn_box {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding-right: 25px;
+    padding-top: 48px;
+}
+
+.close_btn {
+background: none;
+    border: none;
+    cursor: pointer;
 }
 
  .success_title {
     color: #000;
     text-align: center;
-    font-family: Inter;
     font-size: 30px;
     font-weight: 700;
+    padding-top: 34px;
  }
 
 
  .success_text {
     color: #373737;
     text-align: center;
-    font-family: Inter;
     font-size: 19px;
-    font-weight: 500;
+    font-weight: 550;
+    padding-top: 25px;
  }

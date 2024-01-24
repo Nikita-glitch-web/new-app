@@ -314,3 +314,7 @@ table {
     font-size: 18px;
     font-weight: 600;
 }
+
+.validation_text {
+    color: darkred;
+}

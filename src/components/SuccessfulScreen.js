@@ -4,7 +4,7 @@ import image from "../images/Vector.svg";
 
 function SuccessfulScreen() {
     return (
-      <div className={style.successful_wrapper}>
+      <div style={{ fontFamily: "Inter" }} className={style.successful_wrapper}>
         <div className={style.close_btn_box}>
           <button className={style.close_btn}>
             <img src={image} alt="Img" />

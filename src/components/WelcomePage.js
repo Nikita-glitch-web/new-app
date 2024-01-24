@@ -3,6 +3,7 @@ import image from "../images/main_page_img.png";
 import style from "../styles/Welcome.module.css";
 import Successful from "./SuccessfulScreen";
 import LoginScreen from "./LoginScreen";
+import Register from "./RegisterScreen";
 // import Register from "./RegisterPage";
 // import Login from "./LoginPage";
 // треба в css єкспортить шрифти
@@ -37,7 +38,7 @@ function Welcome(props) {
   const WelcomeScreenContent = () => {
     return (
       <>
-        <div className={style.text_wrapper}>
+        <div style={{ fontFamily: "Inter" }} className={style.text_wrapper}>
           <h1 className={style.title}>Welcome</h1>
           <p className={style.sub_text}>
             Lorem ipsum dolor sit amet, <br />
@@ -62,22 +63,31 @@ function Welcome(props) {
   //   event.preventDefault()
   // }
 
-  const successfulSubmitRequest = (props) => {
-    const requestForSubmit = () => {  // це callback
+  const successfullLoginRequest = (props) => {
+    const requestForLogin = () => {  // це callback
       console.log("Callback function called!");
       setViewMode('success')
     };
-    requestForSubmit(props);
+    requestForLogin(props);
   };
+
+  const successfullRegistRequest = (props) => {
+    const requestForRegister = () => {
+      // це callback
+      console.log("Callback function called!");
+      setViewMode("success");
+    };
+    requestForRegister(props);
+  }
 
 
   const Content = () => {
     if (veiewMode === "login") {
-      return <LoginScreen requestForSubmit={successfulSubmitRequest}/>;
+      return <LoginScreen requestForLogin={successfullLoginRequest}/>;
     }
 
     if (veiewMode === "register") {
-      return <h1>DICK</h1>;
+      return <Register requestForRegister={successfullRegistRequest}/>;
     }
 
     if (veiewMode === "success") {

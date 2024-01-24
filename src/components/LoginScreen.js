@@ -1,7 +1,10 @@
 import React from "react";
 // import { useFormik } from "formik";
+import { useFormik } from "formik";
 import image from "../images/Vector.svg";
 import style from "../styles/Login.module.css";
+import validate from "../utils/LoginPageValidation";
+
 
 // function MyComponent(props) {
 //   return (
@@ -21,11 +24,30 @@ import style from "../styles/Login.module.css";
 const LoginScreen = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.requestForSubmit();
-    console.log('Iam gay');
+    props.requestForLogin();
+    console.log('Login screen log');
   };
+  const formik = useFormik({
+      initialValues: {
+        email: "",
+        password: ""
+  },
+  validate,
+    validateOnChange: false, // this one
+    validateOnBlur: false, // and this one
+    onSubmit: (values) => {
+      console.log(values);
+      handleSubmit()
+    },
+  });
+  console.log(formik, 'formik log');
     return (
-      <form onSubmit={handleSubmit} className={style.form}>
+      <form
+        formik={formik}
+        style={{ fontFamily: "Inter" }}
+        onSubmit={handleSubmit}
+        className={style.form}
+      >
         <div className={style.form_header}>
           <div className={style.form_title_box}>
             <p className={style.sub_title}>Welcome Back!!!</p>
@@ -43,33 +65,43 @@ const LoginScreen = (props) => {
               <legend className={style.legend}>username/email</legend>
               <p>
                 <input
-                  type="text"
+                  formik={formik}
+                  id="email"
+                  type="email"
                   className={style.input}
                   placeholder="info@example.com"
-                ></input>
+                  onChange={props.formik.handleChange}
+                  onBlur={props.formik.handleBlur}
+                  value={props.formik.values.email}
+                />
+                {props.formik.errors.email ? (
+                  <div>
+                    <h1 className={style.validation_text}>
+                      {props.formik.errors.email}
+                    </h1>
+                  </div>
+                ) : null}
               </p>
             </fieldset>
           </div>
           <div className={style.inputs_wrapper}>
             <input
-              type="text"
-              className={style.input_password}
-              placeholder="course"
-            ></input>
-          </div>
-          <div className={style.inputs_wrapper}>
-            <input
-              type="number"
+              formik={formik}
+              id="password"
+              type="password"
               className={style.input_password}
               placeholder="password"
-            ></input>
-          </div>
-          <div className={style.inputs_wrapper}>
-            <input
-              type="number"
-              className={style.input_password}
-              placeholder="confirm password"
-            ></input>
+              onChange={props.formik.handleChange}
+              onBlur={props.formik.handleBlur}
+              value={props.formik.values.password}
+            />
+            {props.formik.errors.password ? (
+              <div>
+                <h1 className={style.validation_text}>
+                  {props.formik.errors.password}
+                </h1>
+              </div>
+            ) : null}
           </div>
         </div>
         <div className={style.row_with_checkbox}>

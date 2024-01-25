@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import image from "../images/Vector.svg";
 import style from "../styles/Login.module.css";
 import validate from "../utils/LoginPageValidation";
-
+// import Effect from "../utils/FormikSettings";
 
 // function MyComponent(props) {
 //   return (
@@ -22,30 +22,32 @@ import validate from "../utils/LoginPageValidation";
 
 
 const LoginScreen = (props) => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    props.requestForLogin();
-    console.log('Login screen log');
-  };
+  //  const handleSubmit = (event, props) => {
+  //    event.preventDefault();
+  //    props.requestForLogin();
+  //    console.log("Login screen log");
+  //  };
   const formik = useFormik({
-      initialValues: {
+    initialValues: {
         email: "",
         password: ""
   },
   validate,
     validateOnChange: false, // this one
     validateOnBlur: false, // and this one
-    onSubmit: (values) => {
-      console.log(values);
-      handleSubmit()
+    onSubmit: (values, props) => {
+      console.log(values);   
+      props.requestForLogin();
+      console.log(values)
+      console.log('on Submit Form')
     },
   });
   console.log(formik, 'formik log');
     return (
       <form
+      onSubmit={formik}
         formik={formik}
         style={{ fontFamily: "Inter" }}
-        onSubmit={handleSubmit}
         className={style.form}
       >
         <div className={style.form_header}>
@@ -70,9 +72,15 @@ const LoginScreen = (props) => {
                   type="email"
                   className={style.input}
                   placeholder="info@example.com"
-                  onChange={props.formik.handleChange}
-                  onBlur={props.formik.handleBlur}
-                  value={props.formik.values.email}
+                  onChange={(option, action) => {
+                    props.form.setFieldValue(props.field.name, option);
+                  }}
+                  onBlur={(option, action) => {
+                    props.form.setFieldValue(props.field.name, option);
+                  }}
+                  value={(option, action) => {
+                    props.form.setFieldValue(props.field.name, option);
+                  }}
                 />
                 {props.formik.errors.email ? (
                   <div>
@@ -91,9 +99,15 @@ const LoginScreen = (props) => {
               type="password"
               className={style.input_password}
               placeholder="password"
-              onChange={props.formik.handleChange}
-              onBlur={props.formik.handleBlur}
-              value={props.formik.values.password}
+              onChange={(option, action) => {
+                props.form.setFieldValue(props.field.name, option);
+              }}
+              onBlur={(option, action) => {
+                props.form.setFieldValue(props.field.name, option);
+              }}
+              value={(option, action) => {
+                props.form.setFieldValue(props.field.name, option);
+              }}
             />
             {props.formik.errors.password ? (
               <div>

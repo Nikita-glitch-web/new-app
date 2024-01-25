@@ -1,9 +1,16 @@
 import React from "react";
 // import { useFormik } from "formik";
-import { useFormik } from "formik";
+import { Formik } from "formik";
 import image from "../images/Vector.svg";
 import style from "../styles/Login.module.css";
-import validate from "../utils/LoginPageValidation";
+// import * as Yup from "yup";
+// import validate from "../utils/LoginPageValidation";
+
+// const validationSchema = Yup.object({
+//   name: Yup.string().required("Required"),
+//   email: Yup.string().email("Invalid email").required("Required"),
+// });
+
 // import Effect from "../utils/FormikSettings";
 
 // function MyComponent(props) {
@@ -22,31 +29,18 @@ import validate from "../utils/LoginPageValidation";
 
 
 const LoginScreen = (props) => {
-  //  const handleSubmit = (event, props) => {
-  //    event.preventDefault();
-  //    props.requestForLogin();
-  //    console.log("Login screen log");
-  //  };
-  const formik = useFormik({
-    initialValues: {
-        email: "",
-        password: ""
-  },
-  validate,
-    validateOnChange: false, // this one
-    validateOnBlur: false, // and this one
-    onSubmit: (values, props) => {
-      console.log(values);   
-      props.requestForLogin();
-      console.log(values)
-      console.log('on Submit Form')
-    },
-  });
-  console.log(formik, 'formik log');
-    return (
+  <Formik
+    initialValues={{ email: "", password: "" }}
+    onSubmit={(values, actions) => {
+      setTimeout(() => {
+        alert(JSON.stringify(values, null, 2));
+        actions.setSubmitting(false);
+      }, 1000);
+    }}
+  >
+    {(props) => (
       <form
-      onSubmit={formik}
-        formik={formik}
+        onSubmit={props.handleSubmit}
         style={{ fontFamily: "Inter" }}
         className={style.form}
       >
@@ -67,20 +61,13 @@ const LoginScreen = (props) => {
               <legend className={style.legend}>username/email</legend>
               <p>
                 <input
-                  formik={formik}
                   id="email"
                   type="email"
                   className={style.input}
                   placeholder="info@example.com"
-                  onChange={(option, action) => {
-                    props.form.setFieldValue(props.field.name, option);
-                  }}
-                  onBlur={(option, action) => {
-                    props.form.setFieldValue(props.field.name, option);
-                  }}
-                  value={(option, action) => {
-                    props.form.setFieldValue(props.field.name, option);
-                  }}
+                  onChange={props.handleChange}
+                  onBlur={props.handleBlur}
+                  value={props.values.name}
                 />
                 {props.formik.errors.email ? (
                   <div>
@@ -94,20 +81,13 @@ const LoginScreen = (props) => {
           </div>
           <div className={style.inputs_wrapper}>
             <input
-              formik={formik}
               id="password"
               type="password"
               className={style.input_password}
               placeholder="password"
-              onChange={(option, action) => {
-                props.form.setFieldValue(props.field.name, option);
-              }}
-              onBlur={(option, action) => {
-                props.form.setFieldValue(props.field.name, option);
-              }}
-              value={(option, action) => {
-                props.form.setFieldValue(props.field.name, option);
-              }}
+              onChange={props.handleChange}
+              onBlur={props.handleBlur}
+              value={props.values.name}
             />
             {props.formik.errors.password ? (
               <div>
@@ -137,7 +117,10 @@ const LoginScreen = (props) => {
           </a>
         </p>
       </form>
-    );
+    )}
+  </Formik>;
 }
+
+
 
 export default LoginScreen;

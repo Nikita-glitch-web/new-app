@@ -24,6 +24,7 @@ function Welcome(props) {
   function handleLoginBtn() {
     console.log(true);
     setViewMode("login");
+    console.log(veiewMode)
   }
 
   // const myButton = document.getElementById("btn");

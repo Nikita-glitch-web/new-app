@@ -24,7 +24,7 @@ function Welcome(props) {
   function handleLoginBtn() {
     console.log(true);
     setViewMode("login");
-    console.log(veiewMode)
+    console.log(veiewMode);
   }
 
   // const myButton = document.getElementById("btn");
@@ -65,11 +65,9 @@ function Welcome(props) {
   // }
 
   const successfullLoginRequest = (props) => {
-    const requestForLogin = () => {  // це callback
-      console.log("Callback function called!");
-      setViewMode('success')
-    };
-    requestForLogin(props);
+    // ЦЕ КОЛЛ БЕК
+    console.log("Callback function called!");
+    setViewMode("success");
   };
 
   const successfullRegistRequest = (props) => {
@@ -79,16 +77,15 @@ function Welcome(props) {
       setViewMode("success");
     };
     requestForRegister(props);
-  }
-
+  };
 
   const Content = () => {
     if (veiewMode === "login") {
-      return <LoginScreen requestForLogin={successfullLoginRequest}/>;
+      return <LoginScreen doWhatYouWantOnSubmit={successfullLoginRequest} />;
     }
 
     if (veiewMode === "register") {
-      return <Register requestForRegister={successfullRegistRequest}/>;
+      return <Register doWhatYouWantOnSubmit={successfullRegistRequest} />;
     }
 
     if (veiewMode === "success") {
@@ -119,7 +116,6 @@ export default Welcome;
 // }
 // Код, створений штучним інтелектом. Перевіряйте та використовуйте обережно. Додаткові відомості про запитання й відповіді.
 // В этом примере компонент MyComponent принимает пропс callback, который является функцией. Мы передаем эту функцию в качестве обработчика события onClick кнопки.
-
 
 // const ComponentB = (props) => {
 //   setTimeout(() => {

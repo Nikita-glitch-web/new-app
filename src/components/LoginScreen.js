@@ -33,19 +33,19 @@ const LoginScreen = ({ doWhatYouWantOnSubmit }) => {
     <Formik
       initialValues={{ email: "", password: "" }}
       onSubmit={(values, actions) => {
-        fetch("https://localhost:3000/submit-form", {
+        fetch("http://localhost:3000/submit-form", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(values)
+          })
           .then(response => response.text())
           .then(() => {
             doWhatYouWantOnSubmit();
           })
           .catch(error => console.error(error))
-        });
-        setTimeout(() => {
+          setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
           actions.setSubmitting(false);
         }, validate, 1000);

@@ -14,14 +14,15 @@ const Register = ({ doWhatYouWantOnSubmit }) =>  {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(values, null, 3)
-              .then((response) => response.text())
-              .then(() => {
-                doWhatYouWantOnSubmit();
-              })
-              .catch((error) => console.error(error)),
-          });
-         setTimeout(() => {
+            body: JSON.stringify(values)
+            })
+            .then((response) => response.text())
+            .then(() => {
+              doWhatYouWantOnSubmit();
+              console.log(values)
+            })
+            .catch((error) => console.error(error))
+          setTimeout(() => {
            actions.setSubmitting(false);
            doWhatYouWantOnSubmit();
          }, validate, 1000);
@@ -72,6 +73,7 @@ const Register = ({ doWhatYouWantOnSubmit }) =>  {
                </div>
                <div className={style.inputs_wrapper}>
                  <input
+                   id="number"
                    type="number"
                    className={style.input_password}
                    placeholder="course"
@@ -89,6 +91,7 @@ const Register = ({ doWhatYouWantOnSubmit }) =>  {
                </div>
                <div className={style.inputs_wrapper}>
                  <input
+                   id="password"
                    type="password"
                    className={style.input_password}
                    placeholder="password"
@@ -106,6 +109,7 @@ const Register = ({ doWhatYouWantOnSubmit }) =>  {
                </div>
                <div className={style.inputs_wrapper}>
                  <input
+                   id="confirme_password"
                    type="password"
                    className={style.input_password}
                    placeholder="confirm password"
@@ -124,7 +128,9 @@ const Register = ({ doWhatYouWantOnSubmit }) =>  {
              </div>
 
              <div className={style.login_box}>
-               <button type="submit" className={style.login_btn}>Register</button>
+               <button type="submit" className={style.login_btn}>
+                 Register
+               </button>
              </div>
              <p className={style.bottom_text}>
                Already have account?{" "}

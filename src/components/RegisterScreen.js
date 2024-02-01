@@ -9,7 +9,7 @@ const Register = ({ doWhatYouWantOnSubmit }) =>  {
      <Formik
        initialValues={{ email: "", course: "", password: "" }}
        onSubmit={(values, actions) => {
-          fetch("https://localhost:3000/submit-form", {
+          fetch("http://localhost:3000/submit-form", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -23,6 +23,7 @@ const Register = ({ doWhatYouWantOnSubmit }) =>  {
             })
             .catch((error) => console.error(error))
           setTimeout(() => {
+            alert(JSON.stringify(values, null, 2));
            actions.setSubmitting(false);
            doWhatYouWantOnSubmit();
          }, validate, 1000);
